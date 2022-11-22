@@ -1,0 +1,145 @@
+---
+title: "looking at health data"
+---
+
+
+```{r}
+df <- read.csv(file = 'data.csv')
+head(carSpeeds)
+```
+
+```{r}
+unique(df$type)
+```
+
+
+```{r}
+# playing around graphing 
+# note as.Date(col) converts column to date
+# note as.POSIXct(col) converts column to datetime (what i need here )
+n = "HKQuantityTypeIdentifierRespiratoryRate"
+tmp = df[df$type == n,]
+plot(x = as.POSIXct(tmp$startDate), y = tmp$value, type='S', col='blue', xlab='date', ylab=n, main=n)
+```
+
+```{r}
+n = "HKQuantityTypeIdentifierDistanceWalkingRunning"
+tmp = df[df$type == n,]
+plot(x = as.POSIXct(tmp$startDate), y = tmp$value, type='S', col='blue', xlab='date', ylab=n, main=n)
+```
+```{r}
+n = "HKQuantityTypeIdentifierStepCount"
+tmp = df[df$type == n,]
+plot(x = as.POSIXct(tmp$startDate), y = tmp$value, type='S', col='blue', xlab='date', ylab=n, main=n)
+```
+```{r}
+n = "HKQuantityTypeIdentifierHeartRate"
+tmp = df[df$type == n,]
+plot(x = as.POSIXct(tmp$startDate), y = tmp$value, type='S', col='blue', xlab='date', ylab=n, main=n)
+```
+
+```{r}
+n = "HKQuantityTypeIdentifierRespiratoryRate"
+tmp = df[df$type == n,]
+plot(x = as.POSIXct(tmp$startDate), y = tmp$value, type='S', col='blue', xlab='date', ylab=n, main=n)
+```
+
+```{r}
+n = "HKQuantityTypeIdentifierOxygenSaturation"
+tmp = df[df$type == n,]
+plot(x = as.POSIXct(tmp$startDate), y = tmp$value, type='S', col='blue', xlab='date', ylab=n, main=n)
+```
+
+```{r}
+library(ggplot2)
+n = "HKCategoryTypeIdentifierSleepAnalysis"
+tmp = df[df$type == n,]
+tmp['date'] = as.POSIXct(tmp$startDate)
+tmp = tmp[tmp$value != "HKCategoryValueSleepAnalysisInBed",]
+ggplot(tmp, aes(x=date, y=value)) +  geom_boxplot(fill='blue') + ggtitle("Sleep States to date")
+```
+
+
+
+```{r}
+mydata <- read.csv('mydata.csv')
+mydata['date'] = as.character.POSIXt(mydata$X)
+head(mydata)
+```
+
+```{r}
+tmp = mydata
+tmp = tmp[tmp$Annabel != "",]
+tmp['AnnabelClean'] = trimws(tmp$Annabel)
+ggplot(tmp, aes(x=AnnabelClean)) +  geom_histogram(stat="count") + ggtitle("Annabel staying")
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
