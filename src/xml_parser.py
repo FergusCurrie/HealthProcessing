@@ -54,14 +54,16 @@ def parse_export(fn: str) -> pd.DataFrame:
                 record.attrib["value"],
             ]
         )
-        if len(record.attrib["value"]) > 10:
-            print(record.attrib["value"])
+
     return pd.DataFrame(
         data=data, columns=["type", "creationDate", "startDate", "endDate", "value"]
     )
 
+if __name__ == "__main__":
+    df = parse_export("data/apple_health_export/export.xml")
+    df.to_csv('apple_health_export2.csv', index=False)
 
-# df = parse_export_cda("../data/apple_health_export/export_cda.xml")
+# 
 # print(df.head())
 # print(df["display_name"].value_counts())
 
